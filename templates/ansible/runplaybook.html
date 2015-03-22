@@ -1,0 +1,39 @@
+<html>
+<body>
+
+<h1>module run</h1>
+
+<form name="runplaybook" action="/Ansible/runplaybook/" method="post">
+  {% csrf_token %}
+
+<p>Inventory: 
+<input type="text" name="hosts" />
+<br /></p>
+
+<p>Args:
+<input type="text" name="playbook" />
+<br /></p>
+
+<p>is_sudo:
+<input type="radio" name="sudo" value="yes" /> Yes
+<input type="radio" name="sudo" value="no" /> No
+</br></p>
+<p>is_run:
+<input type="radio" name="chkrun" value="yes" /> run
+<input type="radio" name="chkrun" value="no" /> check
+</br></p>
+<p>forks: 
+<input type="text" name="forks" value="0" />
+<br /></p>
+<p>Other args:<textarea name="others" cols=40 rows=4>
+ 
+</textarea>
+</br></p>
+<p><input type="submit" value="Submit" /></p>
+</form>
+
+</form>
+
+
+</body>
+</html>

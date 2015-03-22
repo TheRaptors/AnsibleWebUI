@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+<table>
+               {% csrf_token %}
+    {% for host in hosts %}
+    <tr>
+        <td> {{host.ipaddr}} </td>
+        <td> {{host.user}} </td>
+        <td> <a href="/Hosts/host/edit/{{host.id}}/">edit</a> <a href="/Hosts/host/del/{{host.id}}/">del</a> </td>
+    </tr>
+
+    {% endfor %}
+</table>
+{% endblock %}

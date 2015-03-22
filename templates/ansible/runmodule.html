@@ -1,0 +1,46 @@
+<html>
+<body>
+
+<h1>module run</h1>
+
+<form name="runmodule" action="/Ansible/runmodule/" method="post">
+  {% csrf_token %}
+
+<p>Inventory: 
+<input type="text" name="inventory" />
+<br /></p>
+<p>Modules: 
+<select name="module">
+<option value="shell">shell</option>
+<option value="yum">yum</option>
+<option value="service">service</option>
+<option value="copy">copy</option>
+</select>
+</br></p>
+<p>Args:
+<input type="text" name="args" />
+<br /></p>
+
+<p>is_sudo:
+<input type="radio" name="sudo" value="yes" /> Yes
+<input type="radio" name="sudo" value="no" /> No
+</br></p>
+<p>is_run:
+<input type="radio" name="chkrun" value="yes" /> run
+<input type="radio" name="chkrun" value="no" /> check
+</br></p>
+<p>forks: 
+<input type="text" name="forks" value="0" />
+<br /></p>
+<p>Other args:<textarea name="others" cols=40 rows=4>
+ 
+</textarea>
+</br></p>
+<p><input type="submit" value="Submit" /></p>
+</form>
+
+</form>
+
+
+</body>
+</html>

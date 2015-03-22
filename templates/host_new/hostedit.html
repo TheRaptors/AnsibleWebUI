@@ -1,0 +1,203 @@
+{% extends 'base2.html' %}
+
+{% load staticfiles %}
+
+{% block toolbar %}
+  <li>
+       <a href="/hosts/home/">Dashboard</a> <span class="divider">/</span>
+   </li>
+<li>
+       <a href="/hosts/hostlist/">host.hostname</a> <span class="divider">/</span>
+   </li>
+    <li class="active">EDIT</li>
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">   </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                    <form class="form-horizontal">
+                                      <fieldset>
+                                        <legend>主机修改</legend>
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead"> 主机名 </label>
+                                          <div class="controls">
+                                            <input type="text" class="span6" id="typeahead"  data-provide="typeahead" data-items="4" value="{{host.hostname}}" name="hostname" >
+
+                                          </div>
+                                        </div>
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">cpu核心数 </label>
+                                          <div class="controls">
+                                            <input name="cpuinfo" type="text"   class="span6" id="typeahead_cpuinfo"  data-provide="typeahead" data-items="4" value="{{host.cpuinfo}}"  >
+                                          </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">内存大小</label>
+                                          <div class="controls">
+                                            <input type="text" name="memsize"  class="span6" id="typeahead_memsize"  data-provide="typeahead" data-items="4" value="{{host.memsize}}">
+                                          </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">交换分区大小 </label>
+                                          <div class="controls">
+                                            <input type="text" name="swapsize"  class="span6"  data-items="4" value="{{host.swapsize}}">
+                                          </div>
+                                        </div>
+
+                                          <div class="control-group">
+                                          <label class="control-label" for="disabledInput">内网IP地址</label>
+                                          <div class="controls">
+                                            <input  name="localIP"  class="input-xlarge disabled" id="disabledInput" type="text" placeholder="{{host.localIP}}" disabled="">
+                                          </div>
+                                        </div>
+
+
+                                          <div class="control-group">
+                                          <label class="control-label" for="disabledInput">内网mac地址</label>
+                                          <div class="controls">
+                                            <input  name="localMac"  class="input-xlarge disabled" id="disabledInput_localMac" type="text" placeholder="{{host.localMac}}" disabled="">
+                                          </div>
+                                        </div>
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">内网网关 </label>
+                                          <div class="controls">
+                                            <input type="text" name="localGW"  class="span6"  data-items="4" value="{{host.localGW}}">
+                                          </div>
+                                        </div>
+
+
+
+                                          <div class="control-group">
+                                          <label class="control-label" for="disabledInput">外网IP地址</label>
+                                          <div class="controls">
+                                            <input  name="outIP"  class="input-xlarge disabled" id="disabledInput_outIP" type="text" placeholder="{{host.outIP}}" disabled="">
+                                          </div>
+                                        </div>
+
+
+                                          <div class="control-group">
+                                          <label class="control-label" for="disabledInput">外网网关</label>
+                                          <div class="controls">
+                                            <input  name="outGW"  class="input-xlarge disabled" id="disabledInput_outgw" type="text" placeholder="{{host.outGW}}" disabled="">
+                                          </div>
+                                        </div>
+
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="select01">机房</label>
+                                          <div class="controls">
+                                            <select id="select01" class="chzn-select">
+                                              <option>{{host.IDC}}</option>
+                                              {% for idc in host.IDCall %}
+                                              <option>{{idc}}</option>
+                                             {% endfor %}
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <label class="control-label" for="multiSelect">开启的服务</label>
+                                          <div class="controls">
+                                            <select multiple="multiple" id="multiSelect" class="chzn-select span4">
+                                             {%  for ss in host.tags %}
+                                              <option selected="selected">  {{ss}} </option>
+                                             {% endfor %}
+
+                                             {% for  ts in host.tagsall %}
+                                             <option>{{ts}}</option>
+                                             {% endfor %}
+                                            </select>
+                                            <p class="help-block">选择相应的服务</p>
+                                          </div>
+
+                                        </div>
+
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">硬盘大小 </label>
+                                          <div class="controls">
+                                            <input type="text" name="devsize"  class="span6"  data-items="4" value="{{host.devsize}}">
+                                          </div>
+                                        </div>
+
+ <div class="control-group">
+                                          <label class="control-label" for="multiSelect">选择登录的用户</label>
+                                          <div class="controls">
+                                            <select multiple="multiple" id="multiSelect_user" class="chzn-select span4">
+                                             {%  for ss in host.LoginUser %}
+                                              <option selected="selected">  {{ss}} </option>
+                                             {% endfor %}
+
+                                            </select>
+                                          </div>
+
+                                        </div>
+
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary">Save changes</button>
+                                          <button type="reset" class="btn">Cancel</button>
+                                        </div>
+                                      </fieldset>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+
+{% endblock %}
+
+{% block footer %}
+
+
+       <script>
+
+	jQuery(document).ready(function() {
+	   FormValidation.init();
+	});
+
+
+        $(function() {
+            $(".datepicker").datepicker();
+            $(".uniform_on").uniform();
+            $(".chzn-select").chosen();
+            $('.textarea').wysihtml5();
+
+            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index+1;
+                var $percent = ($current/$total) * 100;
+                $('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                    $('#rootwizard').find('.pager .next').hide();
+                    $('#rootwizard').find('.pager .finish').show();
+                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                    $('#rootwizard').find('.pager .next').show();
+                    $('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+            $('#rootwizard .finish').click(function() {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+        </script>
+{% endblock %}

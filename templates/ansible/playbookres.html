@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<p>
+    {{a}}
+</p>
+
+<div style="background-color:#660033;font-size:16px; line-height:150%;font:16px/1.5 Arial, Helvetica, sans-serif;">
+    {% autoescape off %}
+    {% for std in stdout %}
+        <!--<font color='#FF0000'>{{std.hostname}}-----------&ndash;&gt;</font><br>-->
+        <font color=cyan>{{std}}</font><br>
+
+    {% endfor %}
+    {% endautoescape%}
+</div>
+
+
+</body>
+</html>

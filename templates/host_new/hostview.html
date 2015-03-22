@@ -1,0 +1,25 @@
+{% extends 'base2.html' %}
+
+{% load staticfiles %}
+
+
+{% block toolbar %}
+  <li>
+       <a href="/hosts/home/">Dashboard</a> <span class="divider">/</span>
+   </li>
+
+    <li class="active">host.hostname</li>
+{% endblock %}
+
+{% block content %}
+
+{% if host %}
+
+{% else  %}
+    <div class="alert alert-error">
+<button class="close" data-dismiss="alert">×</button>
+<strong>Error!</strong>
+   The host does not exist!
+</div>
+{% endif %}
+{% endblock %}

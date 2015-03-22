@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+<form action="/Hosts/host/add/" method="post">
+
+               {% csrf_token %}
+IPaddr: <input type="text" name="ipaddr"> </br>
+User: <input type="text" name="user"></br>
+Password: <input type="password" name="password" >
+<select name="group">
+    {% for g in group %}
+        <option value="{{ g.cname }}">{{ g.cname }}</option>
+    {% endfor %}
+</select>
+
+   <input type="submit" value="Submit" />
+</form>
+{% endblock %}

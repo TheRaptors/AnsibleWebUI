@@ -1,0 +1,81 @@
+{% extends 'base2.html' %}
+
+{% load staticfiles %}
+
+{% block toolbar %}
+  <li>
+       <a href="#">Dashboard</a> <span class="divider">/</span>
+   </li>
+
+    <li class="active">添加主机</li>
+{% endblock %}
+
+{% block content %}
+
+      <div class="row-fluid">
+                         <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Form Validation</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+					<!-- BEGIN FORM-->
+					<form action="/hosts/hostadd/" id="form_sample_1" class="form-horizontal" method="post">
+                           {% csrf_token %}
+						<fieldset>
+							<div class="alert alert-error hide">
+								<button class="close" data-dismiss="alert"></button>
+								You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success hide">
+								<button class="close" data-dismiss="alert"></button>
+								Your form validation is successful!
+							</div>
+  							<div class="control-group">
+  								<label class="control-label">IPaddr <span class="required">*</span></label>
+  								<div class="controls">
+  									<input type="text" name="IPaddress" data-required="1" class="span6 m-wrap"/>
+  								</div>
+  							</div>
+  							<!--<div class="control-group">-->
+  								<!--<label class="control-label">LoginUser<span class="required">*</span></label>-->
+  								<!--<div class="controls">-->
+  									<!--<input name="LoginUser" type="text" class="span6 m-wrap"/>-->
+  								<!--</div>-->
+  							<!--</div>-->
+  							<!--<div class="control-group">-->
+  								<!--<label class="control-label">Password<span class="required">*</span></label>-->
+  								<!--<div class="controls">-->
+  									<!--<input name="password" type="password" class="span6 m-wrap"/>-->
+  									<!--<span class="help-block">e.g: 相应的用户密码</span>-->
+  								<!--</div>-->
+  							<!--</div>-->
+
+  							<div class="control-group">
+  								<label class="control-label">用户<span class="required">*</span></label>
+  								<div class="controls">
+  									<select class="span6 m-wrap" name="jifang">
+  										<option value="">Select...</option>
+                                        {% for u in loginuser %}
+  										<option value="idc.id">{{u.user}}</option>
+                                        {% endfor %}
+  									</select>
+  								</div>
+  							</div>
+
+  							<div class="form-actions">
+  								<button type="submit" class="btn btn-primary">submit</button>
+  								<button type="button" class="btn">Cancel</button>
+  							</div>
+						</fieldset>
+					</form>
+					<!-- END FORM-->
+				</div>
+			    </div>
+			</div>
+                     	<!-- /block -->
+		    </div>
+                     <!-- /validation -->
+
+{% endblock %}

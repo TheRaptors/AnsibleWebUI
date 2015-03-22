@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<p>
+    {{a}}
+</p>
+
+<div style="background-color:#660033;font-size:16px; line-height:150%;font:16px/1.5 Arial, Helvetica, sans-serif;">
+    {% autoescape off %}
+    {% for std in stdout %}
+        <font color='#FF0000'>{{std.hostname}}-------------></font><br>
+        <font color=cyan>{{std.formatJson}}</font><br>
+
+    {% endfor %}
+    {% endautoescape%}
+</div>
+<!--<table>-->
+    <!--<tr>-->
+        <!--<td>stdout</td>-->
+        <!--<td>-->
+            <!--<ul>-->
+            <!--{% for std in stdout  %}-->
+                <!--<li> {{std}}</li>-->
+
+            <!--{% endfor  %}-->
+            <!--</ul>-->
+        <!--</td>-->
+    <!--</tr>-->
+
+        <!--<tr>-->
+        <!--<td>failed</td>-->
+        <!--<td>-->
+            <!--{% for fail in failed %}-->
+                <!--{{ fail }}-->
+            <!--{% endfor %}-->
+        <!--</td>-->
+    <!--</tr>-->
+
+        <!--<tr>-->
+        <!--<td>down</td>-->
+        <!--<td>-->
+<p>
+     {% autoescape off %}
+            {% for dw in down %}
+                {{dw.hostname}}---->{{dw.formatJson}}
+            {% endfor %}
+    {% endautoescape%}
+</p>
+        <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
+
+</body>
+</html>
