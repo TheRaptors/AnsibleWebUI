@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+<form action="/Hosts/group/edit/{{group.id}}" method="post">
+
+               {% csrf_token %}
+    <input type="hidden" name="gid" value="{{ group.id }}">
+cname: <input type="text" name="cname" value="{{ group.cname }}"> </br>
+description: <textarea name='description' rows="3" cols="20" >
+{{ group.description }}
+</textarea>></br>
+
+
+   <input type="submit" value="Submit" />
+</form>
+{% endblock %}

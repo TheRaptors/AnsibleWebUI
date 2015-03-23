@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+<table>
+               {% csrf_token %}
+    {% for g in group %}
+    <tr>
+        <td> {{g.cname}} </td>
+        <td> {{g.descripation}} </td>
+        <td> <a href="/Hosts/group/edit/{{g.id}}">edit</a> <a href="/Hosts/group/del/{{g.id}}">del</a> </td>
+    </tr>
+
+    {% endfor %}
+</table>
+{% endblock %}

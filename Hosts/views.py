@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from Hosts.forms import *
+# from Hosts.forms import *
 from Hosts.models import *
 
 PORT = (80, 8080, 11211, 3306)
@@ -36,14 +36,12 @@ def hostadd(request):
 
         return HttpResponseRedirect("/Hosts/host/list/")
 
-
     elif request.method == 'GET':
         context_dict['group'] = Group.objects.all()
         return render(request, "host/hostadd.html", context_dict)
 
 
-
-def hostopt(request, hostopt, hostid):
+def hostOpt(request, hostopt, hostid):
     context_dict = {}
     try:
         host = Host.objects.get(id=hostid)
@@ -60,8 +58,6 @@ def hostopt(request, hostopt, hostid):
             hostname = None
             user = ""
             password = ""
-
-
             host.hostname = hostname
             host.user = user
             host.password = password
@@ -74,4 +70,54 @@ def hostopt(request, hostopt, hostid):
     elif "del" == hostopt:
         host.delete()
         return HttpResponseRedirect("/Hosts/host/list/")
+
+
+
+def groupOpt(request, groupopt, gid=None):
+
+    context_dict = {}
+    if groupopt == "add" and not gid:
+        if request.method == 'GET':
+            return render(request,"host/groupadd.html",{})
+        elif request.method == "POST":
+            cname = request.POST['cname'].strip()
+            if cname == "":
+                pass
+            description = request.POST['description'].strip()
+            g = Group()
+            g.cname = cname
+            g.description = description
+            g.save()
+            return HttpResponseRedirect("/Hosts/group/list/")
+        else:
+            return HttpResponseRedirect("/Hosts/group/list/")
+
+    elif groupopt == "list" and not gid:
+        group = Group.objects.all()
+        context_dict['group'] = group
+        return render(request, 'host/grouplist.html', context_dict)
+
+    elif groupopt != 'add' and groupopt != "list" and gid:
+        g = Group.objects.filter(id=long(gid))
+        if len(g) == 0:
+            pass
+        else:
+            if groupopt == 'del':
+                g.delete()
+                return  HttpResponseRedirect('/Hosts/group/list')
+            elif groupopt == "edit":
+                context_dict['group'] = g[0]
+                if request.method ==  'GET':
+                    print g[0].cname
+                    return render(request,'host/groupview.html', context_dict)
+                elif request.method == 'POST':
+                    g = Group.objects.filter(id=long(request.POST['gid']))[0]
+                    g.cname = request.POST['cname'].strip()
+                    g.description = request.POST['description'].strip()
+                    g.save()
+                    return HttpResponseRedirect('/Hosts/group/list')
+
+    else:
+        return  HttpResponseRedirect('/Hosts/group/list/')
+
 

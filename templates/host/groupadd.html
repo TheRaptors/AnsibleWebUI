@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+<form action="/Hosts/group/add/" method="post">
+
+               {% csrf_token %}
+cname: <input type="text" name="cname"> </br>
+description: <textarea name='description' rows="3" cols="20">
+
+</textarea>></br>
+
+
+   <input type="submit" value="Submit" />
+</form>
+{% endblock %}
