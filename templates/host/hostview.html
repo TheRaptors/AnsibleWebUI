@@ -10,13 +10,21 @@
 {% block content %}
 <table>
                {% csrf_token %}
-    {% for host in hosts %}
-    <tr>
-        <td> {{host.ipaddr}} </td>
-        <td> {{host.user}} </td>
-        <td> <a href="/Hosts/host/edit/{{host.id}}/">edit</a> <a href="/Hosts/host/del/{{host.id}}/">del</a> </td>
-    </tr>
 
+    {% for hidden in form.hidden_fields %}
+       {{ hidden }}
     {% endfor %}
+    <input type="hidden" name="hostid" value="{{host.hostid}}" />
+
+     {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+
 </table>
 {% endblock %}

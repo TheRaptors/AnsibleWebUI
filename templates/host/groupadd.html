@@ -9,14 +9,15 @@
 
 {% block content %}
 <form action="/Hosts/group/add/" method="post">
+   {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+       {{ hidden }}
+    {% endfor %}
 
-               {% csrf_token %}
-cname: <input type="text" name="cname"> </br>
-description: <textarea name='description' rows="3" cols="20">
-
-</textarea>></br>
-
-
-   <input type="submit" value="Submit" />
+    {% for field in form.visable_fileds %}
+         {{ field.help_text }}
+         {{ field }}
+         {{ field.errors }}
+    {% endfor %}
 </form>
 {% endblock %}
