@@ -103,6 +103,7 @@ STATICFILES_DIRS = (
             )
 
 PLAYBOOK_DIR = '/usr/share/playbook/'
+PROJECT_DIR = BASE_DIR+'/projects/'
 if 'djcelery' in INSTALLED_APPS:
     import djcelery
     djcelery.setup_loader()

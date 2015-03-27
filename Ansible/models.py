@@ -7,9 +7,8 @@ from jsonfield import JSONField
 from djcelery.models import TaskMeta
 
 from Ansible.path_utils import *
-import time,datetime
+import time, datetime
 
-# Create your models here.
 
 PERM_INVENTORY_DEPLOY = 'run'
 PERM_INVENTORY_CHECK  = 'check'
@@ -44,7 +43,6 @@ class PrimordialModel(models.Model):
         abstract = True
 
     description   = models.TextField(blank=True, default='')
-#    created_by    = models.ForeignKey('auth.User', on_delete=SET_NULL, null=True, related_name='%s(class)s_created', editable=False) # not blank=False on purpose for admin!
     creation_date = models.DateTimeField(auto_now_add=True)
     active        = models.BooleanField(default=True)
 

@@ -8,5 +8,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^Hosts/', include('Hosts.urls')),
-#    url(r'^Ansible/', include('Ansible.urls')),
+    url(r'^Ansible/', include('Ansible.urls')),
 )
